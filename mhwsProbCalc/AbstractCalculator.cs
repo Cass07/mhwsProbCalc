@@ -18,8 +18,6 @@ namespace mhwsProbCalc
 
             Results results = new Results(items);
 
-            Console.WriteLine(results.getOptionLength());
-
             if (results.getOptionLength() < r)
             {
                 throw new Exception("r must be less than or equal to the number of items");
@@ -124,13 +122,6 @@ namespace mhwsProbCalc
             int[] toPools = new int[poolsLen];
             int[] pools = results.getPool();
             int[] poolsWeight = results.getPoolWeights();
-
-            Console.WriteLine("len" + len);
-
-            foreach(int i in pools)
-            {
-                Console.WriteLine(i);
-            }
 
             for (int i = 0; i < len; i++)
             {

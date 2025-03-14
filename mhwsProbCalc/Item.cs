@@ -141,10 +141,6 @@ namespace mhwsProbCalc
             }
 
             this.optionIndexes = optionIndexes.ToArray();
-            foreach(int n in this.optionIndexes)
-            {
-                Console.Write(n);
-            }
             this.optionsLength = this.optionIndexes.Length;
         }
 

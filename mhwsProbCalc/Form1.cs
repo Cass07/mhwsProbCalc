@@ -30,7 +30,6 @@ namespace mhwsProbCalc
                     entryForm.WeightFactor, entryForm.ItemCount);
 
                 itemEntries.Add(newItem);
-                Console.WriteLine($"항목 추가: {newItem.getName()} - 개수: {newItem.getCount()} - 가중치: {newItem.getWeightFactor()}");
                 currentIndex++;
                 UpdateListBox();
             }
@@ -76,10 +75,6 @@ namespace mhwsProbCalc
                 Items items = new Items(itemEntries.ToArray());
                 AbstractCalculator calculator = new IndependentTrialsCalc();
                 ResultEntry[] results = calculator.Calculate(items, trialCount);
-                foreach(ResultEntry result in results)
-                {
-                    Console.WriteLine($"{result.getName()} - {result.getRate()}");
-                }
 
                 // 결과 창 표시
                 ResultForm resultForm = new ResultForm(results);
@@ -90,7 +85,6 @@ namespace mhwsProbCalc
             {
                 MessageBox.Show($"계산 중 오류가 발생했습니다: {ex.Message}", "오류",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine(ex.StackTrace);
             }
         }
 
@@ -108,10 +102,6 @@ namespace mhwsProbCalc
                 Items items = new Items(itemEntries.ToArray());
                 AbstractCalculator calculator = new DependentTrialsCalc();
                 ResultEntry[] results = calculator.Calculate(items, trialCount);
-                foreach (ResultEntry result in results)
-                {
-                    Console.WriteLine($"{result.getName()} - {result.getRate()}");
-                }
 
                 // 결과 창 표시
                 ResultForm resultForm = new ResultForm(results);
@@ -122,7 +112,6 @@ namespace mhwsProbCalc
             {
                 MessageBox.Show($"계산 중 오류가 발생했습니다: {ex.Message}", "오류",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Console.WriteLine(ex.StackTrace);
             }
         }
     }
