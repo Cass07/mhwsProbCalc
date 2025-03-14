@@ -63,32 +63,15 @@ namespace mhwsProbCalc
 
         private void BtnCalculate_Click(object sender, EventArgs e)
         {
-            if (itemEntries.Count == 0)
-            {
-                MessageBox.Show("항목을 하나 이상 추가해주세요.", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            try
-            {
-                int trialCount = (int)numericTrials.Value;
-                Items items = new Items(itemEntries.ToArray());
-                AbstractCalculator calculator = new IndependentTrialsCalc();
-                ResultEntry[] results = calculator.Calculate(items, trialCount);
-
-                // 결과 창 표시
-                ResultForm resultForm = new ResultForm(results);
-
-                resultForm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"계산 중 오류가 발생했습니다: {ex.Message}", "오류",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            calcbtnClick(new IndependentTrialsCalc());
         }
 
         private void BtnCalculate2_Click(object sender, EventArgs e)
+        {
+            calcbtnClick(new DependentTrialsCalc());
+        }
+
+        private void calcbtnClick(AbstractCalculator calculator)
         {
             if (itemEntries.Count == 0)
             {
@@ -100,7 +83,6 @@ namespace mhwsProbCalc
             {
                 int trialCount = (int)numericTrials.Value;
                 Items items = new Items(itemEntries.ToArray());
-                AbstractCalculator calculator = new DependentTrialsCalc();
                 ResultEntry[] results = calculator.Calculate(items, trialCount);
 
                 // 결과 창 표시

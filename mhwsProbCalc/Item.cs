@@ -104,7 +104,7 @@ namespace mhwsProbCalc
 
     }
 
-    public class Results
+    public class ResultsInfo
     {
         // 각 item별 가능한 개수
         private int[] pool;
@@ -115,7 +115,7 @@ namespace mhwsProbCalc
         private int optionsLength;
         private int[] poolWeights;
 
-        public Results(Items items)
+        public ResultsInfo(Items items)
         {
             ItemEntry[] itemEntries = items.getItems();
             int itemsLength = items.getLength();

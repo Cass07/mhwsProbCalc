@@ -16,11 +16,11 @@ namespace mhwsProbCalc
             // 각 항목별 확률을 구한다
             // resultEntry를 만든다
 
-            Results results = new Results(items);
+            ResultsInfo results = new ResultsInfo(items);
 
             if (results.getOptionLength() < r)
             {
-                throw new Exception("r must be less than or equal to the number of items");
+                throw new Exception("뽑는 숫자는 전체 풀 개수 이하여야 합니다.");
             }
             List<int[]> combinations = this.getCombination(items, r);
             return this.getResults(results, combinations);
@@ -57,7 +57,7 @@ namespace mhwsProbCalc
             return key;
         }
 
-        protected string makeItemName(int[] combination, Results results)
+        protected string makeItemName(int[] combination, ResultsInfo results)
         {
             string name = "";
             char[] itemChars = results.getCharas();
@@ -70,17 +70,12 @@ namespace mhwsProbCalc
 
         protected abstract List<int[]> getCombination(Items items, int r);
 
-        protected abstract ResultEntry[] getResults(Results results, List<int[]> combinations);
+        protected abstract ResultEntry[] getResults(ResultsInfo results, List<int[]> combinations);
 
     }
 
     public class IndependentTrialsCalc: AbstractCalculator
-    {
-
-        //private Boolean[] visited;
-        //private int[] result;
-        //private int[] options;
-        
+    {        
         // items 객체의 리스트에서 r개만큼 조합 구하기
         protected override List<int[]> getCombination(Items items, int r)
         {
@@ -92,7 +87,7 @@ namespace mhwsProbCalc
             return results;
         }
 
-        protected override ResultEntry[] getResults(Results results, List<int[]> combinations)
+        protected override ResultEntry[] getResults(ResultsInfo results, List<int[]> combinations)
         {
             Dictionary<string, ResultEntry> resultDict = new Dictionary<string, ResultEntry>();
 
@@ -114,7 +109,7 @@ namespace mhwsProbCalc
             return resultDict.Values.ToArray();
         }
 
-        private double calcItemRate(int[] combination, Results results)
+        private double calcItemRate(int[] combination, ResultsInfo results)
         {
             double rate = 1;
             int len = combination.Length;
@@ -180,7 +175,7 @@ namespace mhwsProbCalc
         }
 
 
-        protected override ResultEntry[] getResults(Results results, List<int[]> combinations)
+        protected override ResultEntry[] getResults(ResultsInfo results, List<int[]> combinations)
         {
             int combLen = combinations.Count;
 
